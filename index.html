@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Você ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #08080d;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* FUNDO */
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(63, 0, 253, 0.284), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(230, 8, 178, 0.385), transparent 20%),
+        #000000;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: .5;
+    animation: piscar 3s infinite alternate;
+}
+
+@keyframes piscar {
+    from { opacity: .15; }
+    to { opacity: .8; }
+}
+
+/* CORAÇÕES */
+.heart {
+    position: fixed;
+    bottom: -30px;
+    color: #f40707;
+    font-size: 18px;
+    animation: subir 7s linear forwards;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes subir {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .8;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.hero-content {
+    max-width: 850px;
+    animation: aparecer 1.5s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.small-title {
+    color: #da7692;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 8vw, 90px);
+    line-height: 1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #f42f6a;
+}
+
+.hero p {
+    color: #c9c9d0;
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 650px;
+    margin: auto;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 15px 28px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #bb08e3, #f00808);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .3s;
+    box-shadow: 0 10px 30px rgba(255, 71, 126, .25);
+}
+
+.button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(255, 71, 126, .4);
+}
+
+/* SEÇÕES */
+section {
+    padding: 100px 20px;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.section-title p {
+    color: #9999a5;
+}
+
+/* CARTA */
+.letter {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 25px;
+    padding: 40px;
+    line-height: 1.9;
+    color: #d9d9df;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.letter strong {
+    color: white;
+}
+
+.signature {
+    margin-top: 30px;
+    color: #ff6b96;
+    font-size: 20px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    padding: 30px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(134, 25, 17, 0.4);
+}
+
+.card .icon {
+    font-size: 35px;
+    margin-bottom: 18px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #a7a7b2;
+    line-height: 1.6;
+}
+
+/* TIMELINE */
+.timeline {
+    position: relative;
+    max-width: 750px;
+    margin: auto;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255,71,126,.35);
+}
+
+.timeline-item {
+    width: 50%;
+    padding: 20px 35px;
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 28px;
+    width: 13px;
+    height: 13px;
+    background: #ff477e;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #ff477e;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -6px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -6px;
+}
+
+.timeline-box {
+    background: rgba(255,255,255,.04);
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.07);
+}
+
+.timeline-box h3 {
+    color: #ff6b96;
+    margin-bottom: 8px;
+}
+
+.timeline-box p {
+    color: #aaaab5;
+    line-height: 1.6;
+}
+
+/* FOTOS */
+.photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.photo {
+    height: 260px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #181821, #29202b);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .4s;
+}
+
+.photo:hover img {
+    transform: scale(1.08);
+}
+
+/* FRASE */
+.quote {
+    text-align: center;
+    max-width: 750px;
+    margin: auto;
+}
+
+.quote p {
+    font-size: clamp(25px, 4vw, 42px);
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.quote span {
+    display: block;
+    margin-top: 25px;
+    color: #ff6b96;
+}
+
+/* FINAL */
+.final {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.final h2 {
+    font-size: clamp(35px, 6vw, 65px);
+    margin-bottom: 20px;
+}
+
+.final p {
+    color: #aaaab5;
+    max-width: 600px;
+    line-height: 1.7;
+    margin: auto;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #666672;
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+
+/* RESPONSIVO */
+@media (max-width: 700px) {
+
+    section {
+        padding: 70px 18px;
+    }
+
+    .letter {
+        padding: 25px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .photos {
+        grid-template-columns: 1fr;
+    }
+
+    .photo {
+        height: 350px;
+    }
+
+    .timeline::before {
+        left: 8px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 35px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 2px;
+        right: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="stars" id="stars"></div>
+
+<!-- ============================= -->
+<!-- TELA INICIAL -->
+<!-- ============================= -->
+
+
+<section class="hero"> <div class="hero-content"> <div class="small-title">  </div> <h1> Para <span>você</span>, minha pequena❤️ </h1>
+
+
+
+
+
+        <p>
+            Talvez eu não consiga demostrar tudo o que sinto,
+            então quis tentar colocar um pouco disso aqui.
+        </p>
+
+        <a href="#carta" class="button">
+            Abrir minha carta 
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ============================= -->
+<!-- CARTA -->
+<!-- EDITE O TEXTO ABAIXO -->
+<!-- ============================= -->
+
+<section id="carta">
+
+    <div class="container">
+
+        <div class="section-title">
+            
+        </div>
+
+        <div class="letter">
+
+               Meu amor,
+               <p>
+                <br>
+               </p>
+               Às vezes eu fico pensando em como explicar tudo o que sinto por você, mas parece que nenhuma palavra consegue chegar perto do tamanho do que existe dentro de mim.
+Eu amo você de um jeito que vai muito além de simplesmente dizer “eu te amo”. Amo a pessoa que você é, seu jeito, suas manias, seu sorriso, seus detalhes e até as coisas que às vezes fazem a gente se desentender porque sei que estaremos aprendendo com elas.
+Você se tornou uma parte muito importante pra mim mesmo nos estando longe uma da outra, e eu não consigo simplesmente imaginar minha vida sem você porque é com você que eu quero realmente dar certo e ter uma vida junta, por mas que você já saiba disso eu nunca vou cansa de ti falar.
+Eu quero estar aqui pra fica do seu lado, e ser o seu porto seguro quando tudo parecer pesado. Quero conhecer cada pedacinho seu, os que você mostra ao mundo e os que guarda só para si, e eu sei que cada tempo de espera só vai valer mais a pena quando eu puder te abraçar e sentir que finalmente estou em casa. 
+<p>  Você é a minha certeza, a paz que eu procurava. É por conta de você que eu dou sorriso bobo só de pensar no amanhã, porque o futuro só parece bonito se nele houver você comigo. Não importa quanto tempo passe, eu vou estar aqui. Escolhendo você, todos os dias, de novo e de novo.
+<p>
+</p>
+            <div class="signature">
+             
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================= -->
+<!-- FINAL -->
+<!-- ============================= -->
+
+<section class="final">
+
+    <div>
+
+        <h2>Eu te amo muito!</h2>
+
+        <p>
+            Obrigada por ser você, por existir e por me deixa fazer parte da sua vida!
+        </p>
+
+        <a href="#carta" class="button">
+            Ler novamente
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+/* ============================= */
+/* ESTRELAS */
+/* ============================= */
+
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 100; i++) {
+
+    const star = document.createElement("div");
+
+    star.classList.add("star");
+
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    stars.appendChild(star);
+}
+
+
+/* ============================= */
+/* CORAÇÕES FLUTUANDO */
+/* ============================= */
+
+function criarCoracao() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        (12 + Math.random() * 20) + "px";
+
+    heart.style.animationDuration =
+        (5 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 9000);
+}
+
+setInterval(criarCoracao, 1200);
+
+</script>
+
+</body>
+</html>
+
